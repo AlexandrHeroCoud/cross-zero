@@ -50,3 +50,7 @@ ol, ul {
     display: flex;
     justify-content: center;
 }
+.color-blue{
+    background-color: deepskyblue;
+    color: white;
+}
