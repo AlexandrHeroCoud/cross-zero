@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Particles from "react-particles-js";
+import ParticlesConfig from "./config/ParticlesConfig.json"
 
 const _squaresInit = (() => {
 
@@ -78,7 +80,7 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'board'}>
                 {this.board(this.squares)}
             </div>
         );
@@ -207,25 +209,33 @@ class Game extends React.Component {
                 })
                 if (currentSquare) {
                     return (
-                        <li>Row: {currentSquare.row}, Column:{currentSquare.column}</li>
+                        <li>Row: {currentSquare.row}, Column: {currentSquare.column}</li>
                     )
                 }
             })
         }
 
         return (
-            <div className="game">
-                <div className="game-board">
-                    <Board
-                        squares={current.squares}
-                        onClick={i => this.handleClick(i)}
-                        winner={squares => this.calculateWinner(squares)}
-                    />
-                </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
-                    <ol>{rowColumnList(current.squares)}</ol>
+            <div>
+                <Particles params={ParticlesConfig}/>
+                <div className="game">
+                    <div className="game-board">
+                        <Board
+                            squares={current.squares}
+                            onClick={i => this.handleClick(i)}
+                            winner={squares => this.calculateWinner(squares)}
+                        />
+                    </div>
+                    <div className="game-info">
+                        <div className={'winner'}>{status}</div>
+                        <div className={'lists-info'}>
+                            <ul type={"none"}>{moves}</ul>
+                            <ul type={"none"} className={'list-moves'}>
+                                <li>Position</li>
+                                {rowColumnList(current.squares)}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

@@ -1,3 +1,12 @@
+html {
+    /*background: url("./image/react.jpg") fixed center no-repeat;*/
+    /*background-size: cover;*/
+    /*background: #000;*/
+    background: url(https://marcbruederlin.github.io/particles.js/img/background.jpg) no-repeat black fixed;
+    /*background-attachment: fixed;*/
+    background-size: 100% 100%;
+}
+
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
 }
@@ -5,6 +14,7 @@ body {
 ol, ul {
     padding-left: 30px;
 }
+
 .board-row:after {
     clear: both;
     content: "";
@@ -16,22 +26,27 @@ ol, ul {
 }
 
 .square {
-    background: #fff;
-    border: 1px solid #999;
+    border: none;
+    border-radius: 10px;
     float: left;
     font-size: 24px;
     font-weight: bold;
     line-height: 34px;
-    height: 100px;
-    margin-right: -1px;
-    margin-top: -1px;
+    height: 120px;
+    width: 120px;
+    margin: 8px;
     padding: 0;
     text-align: center;
-    width: 100px;
+    background: rgb(2, 0, 36);
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(0, 169, 203, 1) 0%, rgba(9, 9, 121, 1) 96%);
 }
 
 .square:focus {
     outline: none;
+}
+
+.square:active {
+    box-shadow: inset 0 0 16px -1px #000000;
 }
 
 .kbd-navigation .square:focus {
@@ -40,17 +55,133 @@ ol, ul {
 
 .game {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    z-index: 2;
+    margin: 0 auto;
+}
+
+.board {
+    margin-top: 10em;
 }
 
 .game-info {
-    margin-left: 20px;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    justify-items: center;
+    grid-template-rows: 1em 5em
 }
-.color-blue{
-    background-color: deepskyblue;
+
+.game-info .lists-info {
+    display: grid;
+    justify-self: center;
+    grid-template-columns: 20em 20em;
+    justify-items: center;
+}
+
+.game-info .winner {
+    align-self: center;
+    color: #fff;
+}
+
+.game-info .lists-info ul li button {
+    width: 160px;
+    height: 21px;
+    margin: 2px;
+    background: #3D94F6;
+    background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: -moz-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: -ms-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: -o-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: linear-gradient(to bottom, #3D94F6, #1E62D0);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    padding: 2px;
+    box-shadow: 1px 1px 20px 0px #000000;
+    -webkit-box-shadow: 1px 1px 20px 0px #000000;
+    -moz-box-shadow: 1px 1px 20px 0px #000000;
+    text-shadow: 1px 1px 20px #000000;
+    border: solid #337FED 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+}
+
+.game-info .lists-info ul li button:hover {
+    border: solid #337FED 1px;
+    background: #1E62D0;
+    background-image: -webkit-linear-gradient(top, #1E62D0, #3D94F6);
+    background-image: -moz-linear-gradient(top, #1E62D0, #3D94F6);
+    background-image: -ms-linear-gradient(top, #1E62D0, #3D94F6);
+    background-image: -o-linear-gradient(top, #1E62D0, #3D94F6);
+    background-image: linear-gradient(to bottom, #1E62D0, #3D94F6);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+.color-blue {
     color: white;
+    background: rgb(2, 0, 36);
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgb(0, 122, 203) 0%, rgb(17, 8, 108) 96%);
+}
+.list-moves li {
+    height: 17px;
+    margin: 2px;
+    padding: 2px 7px 2px 7px;
+    border: 1px;
+    color: white;
+    background: #3D94F6;
+    background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: -moz-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: -ms-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: -o-linear-gradient(top, #3D94F6, #1E62D0);
+    background-image: linear-gradient(to bottom, #3D94F6, #1E62D0);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px 0px #000000;
+    -webkit-box-shadow: 1px 1px 20px 0px #000000;
+    -moz-box-shadow: 1px 1px 20px 0px #000000;
+    text-shadow: 1px 1px 20px #000000;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    display: block;
+}
+.list-moves li:first-child{
+    text-align: center;
+    display: block;
+}
+
+#tsparticles {
+    position: absolute;
+    width: 97%;
+    height: 97%;
+    z-index: -1;
+}
+@media screen and (max-width: 480px) {
+    .game-info{
+        justify-content: center;
+    }
+    .game-info .lists-info {
+        grid-template-columns: none;
+    }
+    .board {
+        margin-top: 1em;
+    }
+    .square{
+        height: 85px;
+        width: 85px;
+    }
+    .list-moves{
+        justify-self: center;
+    }
+    .lists-info ul{
+        padding-left: 0;
+    }
 }
